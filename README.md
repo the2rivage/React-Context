@@ -1,16 +1,98 @@
-# React + Vite
+# React Context API Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal login & profile system demonstrating global state management with the React Context API — no prop drilling required.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-Context_API-61DAFB?logo=react)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project shows how to share state across components using React's built-in Context API.
 
-## Expanding the ESLint configuration
+| File | Role |
+|------|------|
+| `UserContext.js` | Creates the global context object |
+| `UserContextProvider.js` | Wraps the app and exposes shared state |
+| `Login.jsx` | Writes user data to context |
+| `Profile.jsx` | Reads user data from context |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## How It Works
+
+### 1. Create the context
+
+A context object is created with `createContext()`:
+
+```jsx
+const UserContext = React.createContext();
+```
+
+### 2. Provide the context
+
+`UserContextProvider` wraps the app and passes `user` and `setUser` down to all children:
+
+```jsx
+<UserContext.Provider value={{ user, setUser }}>
+  {children}
+</UserContext.Provider>
+```
+
+### 3. Consume the context
+
+Any component can access the shared state via `useContext()`:
+
+```jsx
+const { user, setUser } = useContext(UserContext);
+```
+
+---
+
+## Data Flow
+
+1. User enters credentials in the `Login` component
+2. `setUser()` updates the global context
+3. `Profile` reads and displays the updated user data
+4. No props are passed between components
+
+---
+
+## Project Structure
+
+```
+
+src/
+    ├── context/
+    │   ├── UserContext.js          
+    │   └── UserContextProvider.js  
+    ├── components/
+    │   ├── Login.jsx               
+    │   └── Profile.jsx             
+    ├── App.jsx                     
+    └── main.jsx                    
+```
+
+## Features
+
+- Global state management using the Context API
+- Clean separation between provider logic and UI components
+- No prop drilling
+- Beginner-friendly structure
+
+---
+
+> **Note:** This project is for learning purposes only. Storing passwords in plain text is not secure. In production, use proper authentication and encryption.
+
+---
+
+## When to Use the Context API
+
+Context is a great fit for small to medium React apps that need to share global data — like auth state, themes, or user preferences — without reaching for a heavier solution like Redux.
+
+---
+
+*Context API = global state sharing in React without prop drilling.*
+
+
+
