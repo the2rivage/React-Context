@@ -5,6 +5,10 @@ A minimal login & profile system demonstrating global state management with the 
 ![React](https://img.shields.io/badge/React-Context_API-61DAFB?logo=react)
 
 ---
+<img width="716" height="295" alt="image" src="https://github.com/user-attachments/assets/7e165291-8883-407f-8dae-aff21f03a443" />
+---
+<img width="596" height="301" alt="image" src="https://github.com/user-attachments/assets/c2bb2056-9381-4c6b-a909-40cd6df7fa52" />
+
 
 ## Overview
 
